@@ -1,0 +1,39 @@
+<head>
+<title>Sample page for reading url parameters</title>
+</head>
+<body>
+
+<table>
+<tr><td>access_token</td><td id="access_token"></td></tr>
+<tr><td>expires_in</td><td id="expires_in"></td></tr>
+<tr><td>data_access_expiration_time</td><td id="data_access_expiration_time"></td></tr>	
+</table>
+
+<script>
+function GetURLParameter(sParam)
+{
+	var page_url = window.location.href
+	var sPageURL = page_url.slice(page_url.indexOf("access_token"))
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}
+var data_access_expiration_time = GetURLParameter('data_access_expiration_time');
+var access_token = GetURLParameter('access_token');
+var expires_in = GetURLParameter('expires_in');
+
+document.getElementById("access_token").innerText = access_token;
+document.getElementById("expires_in").innerHTML = expires_in;
+document.getElementById("data_access_expiration_time").innerHTML = data_access_expiration_time;
+
+</script>
+
+
+</body>
+
